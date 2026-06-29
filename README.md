@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Github]()
-- Live Site URL: [Netlify]()
+- Solution URL: [Github](https://github.com/VirginiaPat/ecommerce-product-page.git)
+- Live Site URL: [Netlify](https://ecommerce-product-virgi.netlify.app/)
 
 ## My process
 
