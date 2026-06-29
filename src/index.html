@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../images/favicon-32x32.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="./index.css" type="text/css" rel="stylesheet" />
+    <script type="module" src="./js/index.js"></script>
+    <title>Frontend Mentor | E-commerce product page</title>
+  </head>
+  <body class="bg-white">
+    <header
+      class="flex justify-between items-center mt-5 pb-6 ml-6 mr-6 md:mt-7 md:pb-8 md:ml-20 md:mr-20 md:border-b md:border-grey-100 xl:ml-21.25 xl:mr-21.25 screen1440:ml-41.25 screen1440:mr-41.25"
+    >
+      <!-- Menu button & logo container / MOBILE - TABLET -->
+      <div class="flex gap-4 lg:hidden">
+        <button
+          id="openMenuButton"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="ham-menu-dialog"
+          class="cursor-pointer"
+        >
+          <img
+            class="w-4 h-3.75 transition hover:filter-(--filter-orange-500)"
+            src="../images/icon-menu.svg"
+            alt=""
+          />
+        </button>
+        <a href="#home" aria-label="Go to home page"
+          ><img
+            class="transition hover:filter-(--filter-orange-500)"
+            src="../images/logo.svg"
+            alt=""
+        /></a>
+      </div>
+
+      <!-- logo & nav bar / DESKTOP -->
+      <div class="hidden lg:flex lg:gap-12 xl:gap-14">
+        <a href="#home" aria-label="Go to home page"
+          ><img
+            class="transition hover:filter-(--filter-orange-500)"
+            src="../images/logo.svg"
+            alt=""
+        /></a>
+        <nav>
+          <ul class="flex gap-8 text-preset-4 text-grey-500">
+            <li>
+              <a href="#collections" class="nav-link-desktop">Collections</a>
+            </li>
+            <li>
+              <a href="#men" class="nav-link-desktop">Men</a>
+            </li>
+            <li>
+              <a href="#women" class="nav-link-desktop">Women</a>
+            </li>
+            <li>
+              <a href="#about" class="nav-link-desktop">About</a>
+            </li>
+            <li>
+              <a href="#contact" class="nav-link-desktop">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Cart img and avatar container -->
+      <div class="relative flex gap-6 items-center md:gap-12">
+        <button
+          id="openShoppingCart"
+          type="button"
+          aria-label="Open shopping cart list"
+          aria-expanded="false"
+          aria-controls="shopping-cart"
+          class="cursor-pointer"
+        >
+          <img
+            class="transition hover:filter-(--filter-grey-950)"
+            src="../images/icon-cart.svg"
+            alt=""
+          />
+        </button>
+        <!-- Number of selected items on the card image(oval container with orange background) -->
+        <output
+          id="quantity-cart-badge"
+          for="quantity-display"
+          class="hidden absolute -top-0.75 left-2.25 items-center justify-center rounded-md bg-orange-500 font-kumbh-sans font-bold text-10px text-white w-4.75 h-3.25 md:top-2.5"
+          >3</output
+        >
+        <!-- Customer's profile -->
+        <button
+          id="openCustomerTabMenu"
+          type="button"
+          aria-label="Open customer's profile"
+          aria-expanded="false"
+          aria-controls="customer-profile"
+        >
+          <img
+            class="w-6 h-6 md:w-12.5 md:h-12.5 transition outline-2 outline-transparent rounded-full hover:outline-orange-500"
+            src="../images/image-avatar.png"
+            alt=""
+          />
+        </button>
+      </div>
+    </header>
+    <!-- Hamburger menu -->
+    <div id="hamMenu" aria-hidden="true" class="hidden lg:hidden">
+      <!-- Black with oppacity overlay container -->
+      <div
+        id="overlay"
+        aria-hidden="true"
+        class="bg-black opacity-75 h-screen w-screen absolute top-0 z-10"
+      ></div>
+      <!-- hamburger menu container -->
+      <div
+        role="dialog"
+        id="ham-menu-dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        class="animate-slide-in-left absolute top-0 left-0 bg-white h-screen pt-6 pl-6 pr-33 flex flex-col gap-14 z-20 md:pt-12 md:pl-20 md:pr-31.75"
+      >
+        <button
+          id="closeMenuBtn"
+          type="button"
+          aria-label="Close navigation menu"
+          class="self-start cursor-pointer"
+        >
+          <img
+            class="transition hover:filter-(--filter-orange-500)"
+            src="../images/icon-close.svg"
+            alt=""
+          />
+        </button>
+        <nav id="main-menu" tabindex="-1">
+          <ul
+            class="flex flex-col gap-6 font-kumbh-sans font-bold text-lg leading-6.5 tracking-normal text-grey-950"
+          >
+            <li>
+              <a class="nav-link-hamburger" href="#collections">Collections</a>
+            </li>
+            <li>
+              <a class="nav-link-hamburger" href="#men">Men</a>
+            </li>
+            <li>
+              <a class="nav-link-hamburger" href="#women">Women</a>
+            </li>
+            <li>
+              <a class="nav-link-hamburger" href="#about">About</a>
+            </li>
+            <li>
+              <a class="nav-link-hamburger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <main
+      class="flex flex-col gap-6 md:gap-12 md:mt-12 lg:flex-row lg:gap-10 lg:justify-between lg:items-center lg:mt-18 xl:mt-24 xl:gap-32 screen1440:w-255.25 screen1440:mx-auto"
+    >
+      <!-- Product's images carousel - MOBILE / TABLET-->
+      <section
+        aria-label="Product images carousel"
+        class="md:ml-20 md:mr-20 lg:hidden"
+      >
+        <div
+          id="product-carousel-mobile"
+          class="relative w-full overflow-hidden h-75 md:rounded-2xl"
+        >
+          <!-- Slides wrapper -->
+          <div
+            id="carousel-track-mobile"
+            class="flex transition-transform duration-500 ease-in-out"
+          >
+            <!-- Slide 1 -->
+            <figure class="min-w-full carousel-slide">
+              <img
+                src="../images/image-product-1.jpg"
+                class="w-full h-full object-cover object-[center_calc(100%-80px)] screen540:object-[center_calc(100%-190px)] screen667:object-[center_calc(100%-250px)] screen720:object-[center_calc(100%-278px)] md:object-[center_calc(100%-225px)] screen912:object-[center_calc(100%-290px)]"
+                alt="Fall Limited Edition Sneakers - front view"
+              />
+              <figcaption class="sr-only">Image 1 of 4</figcaption>
+            </figure>
+
+            <!-- Slide 2 -->
+            <figure class="min-w-full carousel-slide">
+              <img
+                src="../images/image-product-2.jpg"
+                class="w-full object-cover"
+                alt="Fall Limited Edition Sneakers - back view"
+              />
+              <figcaption class="sr-only">Image 2 of 4</figcaption>
+            </figure>
+
+            <!-- Slide 3 -->
+            <figure class="min-w-full carousel-slide">
+              <img
+                src="../images/image-product-3.jpg"
+                class="w-full h-full object-cover screen720:object-[center_calc(100%-30px)]"
+                alt="Fall Limited Edition Sneakers - right side view"
+              />
+              <figcaption class="sr-only">Image 3 of 4</figcaption>
+            </figure>
+
+            <!-- Slide 4 -->
+            <figure class="min-w-full carousel-slide">
+              <img
+                src="../images/image-product-4.jpg"
+                class="w-full object-cover screen600:object-[center_calc(100%-98px)]"
+                alt="Fall Limited Edition Sneakers - left side view"
+              />
+              <figcaption class="sr-only">Image 4 of 4</figcaption>
+            </figure>
+          </div>
+
+          <!-- Previous button -->
+          <button
+            id="carousel-prev"
+            type="button"
+            aria-label="Previous image"
+            class="carousel-btn-prv-next left-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 transition hover:stroke-orange-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          <!-- Next button -->
+          <button
+            id="carousel-next"
+            type="button"
+            aria-label="Next image"
+            class="carousel-btn-prv-next right-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 transition hover:stroke-orange-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Product's images gallery and thumbnails images container - DESKTOP -->
+      <section
+        aria-label="Product images gallery"
+        class="hidden lg:ml-20 lg:flex lg:flex-col lg:gap-8 xl:ml-32.25 screen1440:ml-0"
+      >
+        <!-- Big image / Images Galerry -->
+        <div id="product-carousel-desktop" class="w-full p-1 -m-1">
+          <div class="overflow-hidden rounded-2xl">
+            <!-- Slides Wrapper -->
+            <div
+              id="carousel-track-desktop"
+              class="flex transition-transform duration-500 ease-in-out"
+            >
+              <!-- Slide 1 -->
+              <button
+                type="button"
+                aria-label="Open front view in lightbox"
+                aria-controls="lightbox"
+                data-image-index="1"
+                class="w-full cursor-pointer"
+              >
+                <figure>
+                  <img
+                    src="../images/image-product-1.jpg"
+                    class="w-full object-cover"
+                    alt=""
+                  />
+                  <figcaption class="sr-only">Image 1 of 4</figcaption>
+                </figure>
+              </button>
+
+              <!-- Slide 2 -->
+              <button
+                type="button"
+                aria-label="Open back view in lightbox"
+                aria-controls="lightbox"
+                data-image-index="2"
+                class="w-full cursor-pointer hidden"
+              >
+                <figure>
+                  <img
+                    src="../images/image-product-2.jpg"
+                    class="w-full object-cover"
+                    alt=""
+                  />
+                  <figcaption class="sr-only">Image 2 of 4</figcaption>
+                </figure>
+              </button>
+
+              <!-- Slide 3 -->
+              <button
+                type="button"
+                aria-label="Open right side view in lightbox"
+                aria-controls="lightbox"
+                data-image-index="3"
+                class="w-full cursor-pointer hidden"
+              >
+                <figure>
+                  <img
+                    src="../images/image-product-3.jpg"
+                    class="w-full object-cover"
+                    alt=""
+                  />
+                  <figcaption class="sr-only">Image 3 of 4</figcaption>
+                </figure>
+              </button>
+
+              <!-- Slide 4 -->
+              <button
+                type="button"
+                aria-label="Open left side view in lightbox"
+                aria-controls="lightbox"
+                data-image-index="4"
+                class="w-full cursor-pointer hidden"
+              >
+                <figure>
+                  <img
+                    src="../images/image-product-4.jpg"
+                    class="w-full object-cover"
+                    alt=""
+                  />
+                  <figcaption class="sr-only">Image 4 of 4</figcaption>
+                </figure>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex justify-between">
+          <!-- Image 1/4 button -->
+          <button
+            id="show-thumbnail-1-btn"
+            type="button"
+            aria-label="Show front view"
+            class="thumbnail-btn"
+          >
+            <img
+              class="thumbnail-btn-img"
+              src="../images/image-product-1-thumbnail.jpg"
+              alt=""
+            />
+            <span class="thumbnail-btn-overlay"></span>
+          </button>
+          <!-- Image 2/4 button -->
+          <button
+            id="show-thumbnail-2-btn"
+            type="button"
+            aria-label="Show back view"
+            class="thumbnail-btn"
+          >
+            <img
+              class="thumbnail-btn-img"
+              src="../images/image-product-2.jpg"
+              alt=""
+            />
+            <span class="thumbnail-btn-overlay"></span>
+          </button>
+          <!-- Image 3/4 button -->
+          <button
+            id="show-thumbnail-3-btn"
+            type="button"
+            aria-label="Show right side view"
+            class="thumbnail-btn"
+          >
+            <img
+              class="thumbnail-btn-img"
+              src="../images/image-product-3-thumbnail.jpg"
+              alt=""
+            />
+            <span class="thumbnail-btn-overlay"></span>
+          </button>
+          <!-- Image 4/4 button -->
+          <button
+            id="show-thumbnail-4-btn"
+            type="button"
+            aria-label="Show left side view"
+            class="thumbnail-btn"
+          >
+            <img
+              class="thumbnail-btn-img"
+              src="../images/image-product-4-thumbnail.jpg"
+              alt=""
+            />
+            <span class="thumbnail-btn-overlay"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Product details container -->
+      <section
+        class="ml-6 mr-6 flex flex-col gap-8 md:gap-6 md:ml-20 md:mr-20 lg:ml-0 lg:gap-8 xl:mr-32.25 screen1440:mr-0"
+      >
+        <!-- Secondary, main title and description -->
+        <div class="flex flex-col gap-4 md:gap-6">
+          <p class="uppercase text-preset-6 text-grey-500">Sneaker Company</p>
+          <h1
+            class="font-kumbh-sans font-bold text-28px leading-8 tracking-normal text-grey-950 md:text-44px md:leading-11"
+          >
+            Fall Limited Edition Sneakers
+          </h1>
+          <p
+            class="font-kumbh-sans font-normal text-15px leading-6.5 tracking-normal text-grey-500"
+          >
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they'll withstand everything
+            the weather can offer.
+          </p>
+        </div>
+
+        <!-- Price container -->
+        <div
+          class="flex justify-between items-center md:flex-col md:gap-2 md:items-start"
+        >
+          <div class="flex gap-4 md:gap-6">
+            <dl>
+              <dt class="sr-only">Price</dt>
+              <dd id="product-price" class="text-preset-2 text-grey-950">
+                $125.00
+              </dd>
+            </dl>
+            <div
+              class="bg-black rounded-md w-12.75 h-6.75 flex items-center justify-center"
+            >
+              <dl>
+                <dt class="sr-only">Discount</dt>
+                <dd class="text-preset-3 text-white">50%</dd>
+              </dl>
+            </div>
+          </div>
+          <dl>
+            <dt class="sr-only">Original price</dt>
+            <dd class="text-preset-3-bold text-grey-500 line-through">
+              $250.00
+            </dd>
+          </dl>
+        </div>
+
+        <!-- Quantity picker and add to cart button -->
+        <div
+          class="flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between"
+        >
+          <!-- Quantity picker -->
+          <div
+            role="group"
+            aria-labelledby="quantity-label"
+            class="p-4 bg-grey-50 rounded-[0.625rem] flex justify-between items-center md:pl-6 md:pr-6 md:gap-26 lg:pl-3.5 lg:pr-3.5 lg:gap-12"
+          >
+            <span id="quantity-label" class="sr-only">Quantity</span>
+            <!-- button decrease -->
+            <button
+              id="decrease-btn"
+              type="button"
+              aria-label="Decrease quantity"
+              class="cursor-pointer hover:filter-(--filter-orange-300)"
+            >
+              <img src="../images/icon-minus.svg" alt="" />
+            </button>
+            <!-- Quantity output -->
+            <output
+              id="quantity-display"
+              aria-live="polite"
+              class="text-preset-3-bold text-grey-950"
+              >0</output
+            >
+            <!-- button increase -->
+            <button
+              id="increase-btn"
+              type="button"
+              aria-label="Increase quantity"
+              class="cursor-pointer hover:filter-(--filter-orange-300)"
+            >
+              <img src="../images/icon-plus.svg" alt="" />
+            </button>
+          </div>
+          <!--  button -->
+          <button type="button" class="add-to-cart">
+            <img
+              class="filter-(--filter-grey-950)"
+              src="../images/icon-cart.svg"
+              alt=""
+            />
+            <span class="text-preset-3-bold text-grey-950">Add to cart</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- POPUP COMPONENTS -->
+      <!-- Cart -->
+      <div
+        id="shopping-cart"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Cart"
+        aria-hidden="true"
+        class="hidden absolute top-19 right-1.75 pt-6 pb-6 rounded-xl w-90 bg-white drop-shadow-4xl md:right-2.25 md:top-23.5 lg:right-20 xl:right-22.25"
+      >
+        <h2
+          class="pl-3 text-preset-3-bold text-grey-950 border-b pb-6 border-grey-100"
+        >
+          Cart
+        </h2>
+
+        <!-- Empty cart container -->
+        <div
+          id="empty-cart-container"
+          class="flex justify-center items-center pt-16.5 pb-16.5"
+        >
+          <h3 class="text-preset-3-bold text-grey-500">Your cart is empty.</h3>
+        </div>
+
+        <!-- Full cart container -->
+        <div id="full-cart-container" class="flex flex-col gap-6">
+          <!-- Selected products container -->
+          <ul>
+            <li class="pt-6 pl-5.5 pr-5.5 flex gap-4 items-center">
+              <!-- Selected product image -->
+              <img
+                class="w-12.5 h-12.5 rounded-sm object-cover"
+                src="../images/image-product-1-thumbnail.jpg"
+                alt=""
+              />
+              <!-- Details -->
+              <div class="flex flex-col">
+                <p class="text-grey-500">Fall Limited Edition Sneakers</p>
+                <div class="flex gap-2 text-preset-4">
+                  <data
+                    id="cart-item-price"
+                    value="125.00"
+                    class="text-preset-3 text-grey-500"
+                    >$125.00 x
+                    <output id="cart-quantity" for="quantity-display">3</output>
+                  </data>
+                  <output
+                    id="total-price"
+                    for="quantity-display cart-item-price"
+                    aria-label="Total price"
+                    class="text-preset-3-bold text-grey-950"
+                  >
+                    $375.00
+                  </output>
+                </div>
+              </div>
+              <!-- Delete button -->
+              <button
+                id="delete-button"
+                type="button"
+                aria-label="Delete item"
+                class="cursor-pointer"
+              >
+                <img
+                  class="h-4 hover:filter-(--filter-orange-500)"
+                  src="../images/icon-delete.svg"
+                  alt=""
+                />
+              </button>
+            </li>
+          </ul>
+          <!-- Checkout button -->
+          <button
+            id="checkout-button"
+            type="button"
+            class="pt-4 pb-4 ml-6 mr-6 flex justify-center items-center bg-orange-500 rounded-[0.625rem] cursor-pointer hover:bg-orange-300"
+          >
+            <span class="text-preset-3-bold text-grey-950">Checkout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Product image lightbox"
+        aria-hidden="true"
+        tabindex="-1"
+        class="fixed inset-0 hidden items-center justify-center z-50 bg-black/75"
+      >
+        <!-- Container with 1)close button 2)image gallery and 3)thumbnails container -->
+        <div class="w-full max-w-137.5 max-h-screen flex flex-col items-center">
+          <!-- 1.Close button -->
+          <button
+            id="closeLightboxBtn"
+            type="button"
+            aria-label="Close lightbox"
+            class="self-end mb-6 cursor-pointer"
+          >
+            <img
+              class="w-5 transition filter-(--filter-white) hover:filter-(--filter-orange-500)"
+              src="../images/icon-close.svg"
+              alt=""
+            />
+          </button>
+
+          <!--Big image / Image gallery -->
+          <div class="relative">
+            <div
+              id="product-carousel-lightbox"
+              class="w-full overflow-hidden rounded-2xl"
+            >
+              <!-- Slides Wrapper -->
+              <div
+                id="carousel-track-lightbox"
+                class="flex transition-transform duration-500 ease-in-out"
+              >
+                <!-- slide 1 -->
+                <figure class="hidden min-w-full carousel-slide">
+                  <img
+                    src="../images/image-product-1.jpg"
+                    class="w-full object-cover"
+                    alt="Fall Limited Edition Sneakers - front view"
+                  />
+                  <figcaption class="sr-only">Image 1 of 4</figcaption>
+                </figure>
+
+                <!-- slide 2 -->
+                <figure class="hidden min-w-full carousel-slide">
+                  <img
+                    src="../images/image-product-2.jpg"
+                    class="w-full object-cover"
+                    alt="Fall Limited Edition Sneakers - back view"
+                  />
+                  <figcaption class="sr-only">Image 2 of 4</figcaption>
+                </figure>
+
+                <!-- slide 3 -->
+                <figure class="hidden min-w-full carousel-slide">
+                  <img
+                    src="../images/image-product-3.jpg"
+                    class="w-full object-cover"
+                    alt="Fall Limited Edition Sneakers - right side view"
+                  />
+                  <figcaption class="sr-only">Image 3 of 4</figcaption>
+                </figure>
+
+                <!-- slide 4 -->
+                <figure class="hidden min-w-full carousel-slide">
+                  <img
+                    src="../images/image-product-4.jpg"
+                    class="w-full object-cover"
+                    alt="Fall Limited Edition Sneakers - left side view"
+                  />
+                  <figcaption class="sr-only">Image 4 of 4</figcaption>
+                </figure>
+              </div>
+            </div>
+            <!-- Previous button -->
+            <button
+              id="lightbox-carousel-prev"
+              type="button"
+              aria-label="Previous image"
+              class="carousel-btn-prv-next -left-5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 transition hover:stroke-orange-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+
+            <!-- Next button -->
+            <button
+              id="lightbox-carousel-next"
+              type="button"
+              aria-label="Next image"
+              class="carousel-btn-prv-next -right-5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 transition hover:stroke-orange-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Thumbnails container -->
+          <div class="flex gap-8 mt-10">
+            <!-- Image 1/4 button -->
+            <button
+              id="lightbox-thumbnail-1-btn"
+              type="button"
+              aria-label="Show front view"
+              class="thumbnail-btn"
+            >
+              <img
+                class="thumbnail-btn-img"
+                src="../images/image-product-1-thumbnail.jpg"
+                alt=""
+              />
+              <span class="thumbnail-btn-overlay"></span>
+            </button>
+            <!-- Image 2/4 button -->
+            <button
+              id="lightbox-thumbnail-2-btn"
+              type="button"
+              aria-label="Show back view"
+              class="thumbnail-btn"
+            >
+              <img
+                class="thumbnail-btn-img"
+                src="../images/image-product-2.jpg"
+                alt=""
+              />
+              <span class="thumbnail-btn-overlay"></span>
+            </button>
+            <!-- Image 3/4 button -->
+            <button
+              id="lightbox-thumbnail-3-btn"
+              type="button"
+              aria-label="Show right side view"
+              class="thumbnail-btn"
+            >
+              <img
+                class="thumbnail-btn-img"
+                src="../images/image-product-3-thumbnail.jpg"
+                alt=""
+              />
+              <span class="thumbnail-btn-overlay"></span>
+            </button>
+            <!-- Image 4/4 button -->
+            <button
+              id="lightbox-thumbnail-4-btn"
+              type="button"
+              aria-label="Show left side view"
+              class="thumbnail-btn"
+            >
+              <img
+                class="thumbnail-btn-img"
+                src="../images/image-product-4-thumbnail.jpg"
+                alt=""
+              />
+              <span class="thumbnail-btn-overlay"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer aria-label="Site credits" class="font-kumbh-sans mt-10">
+      <div
+        class="flex flex-col font-normal text-xs leading-[150%] tracking-normal text-grey-950 text-center pb-8"
+      >
+        <p>
+          Challenge by
+          <a
+            class="text-orange-500 focus:text-orange-300 hover:text-orange-300"
+            href="https://www.frontendmentor.io?ref=challenge"
+          >
+            Frontend Mentor.
+          </a>
+        </p>
+        <p>
+          Coded by
+          <a
+            class="text-orange-500 focus:text-orange-300 hover:text-orange-300"
+            href="https://www.frontendmentor.io/profile/VirginiaPat"
+            >Virginia Patrika.</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

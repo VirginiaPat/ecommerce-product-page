@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --color-grey-950: #1d2026;
+  --color-grey-500: #69707d;
+  --color-grey-300: #c3cad9;
+  --color-grey-100: #e4e9f2;
+  --color-grey-50: #f6f8fd;
+  --color-orange-500: #ff7e1b;
+  --color-orange-300: #ffab6a;
+  --color-green-focus: #005f73;
+
+  --font-kumbh-sans: "Kumbh Sans", sans-serif;
+
+  --text-44px: 2.75rem;
+  --text-28px: 1.75rem;
+  --text-15px: 0.9375rem;
+  --text-13px: 0.8125rem;
+  --text-10px: 0.625rem;
+
+  /* Custom filters */
+  --filter-grey-950: brightness(0) saturate(100%) invert(9%) sepia(11%)
+    saturate(998%) hue-rotate(182deg) brightness(94%) contrast(91%);
+
+  --filter-orange-500: brightness(0) saturate(100%) invert(48%) sepia(88%)
+    saturate(730%) hue-rotate(347deg) brightness(102%) contrast(101%);
+
+  --filter-white: brightness(0) saturate(100%) invert(100%) sepia(0%)
+    saturate(7496%) hue-rotate(303deg) brightness(103%) contrast(103%);
+
+  --filter-orange-300: brightness(0) saturate(100%) invert(69%) sepia(25%)
+    saturate(859%) hue-rotate(340deg) brightness(100%) contrast(102%);
+
+  /* custom breakpoint:540px (Galaxy Z Flip) */
+  --breakpoint-screen540: 33.75rem;
+  /* custom breakpoint:600px (Galaxy Z Fold (portrait)) */
+  --breakpoint-screen600: 37.5rem;
+  /* custom breakpoint:667px (iPhone 6/7/8 landscape) */
+  --breakpoint-screen667: 41.6875rem;
+  /* custom breakpoint:720px (Galaxy Z Fold (landscape)) */
+  --breakpoint-screen720: 45rem;
+  /* custom breakpoint:912px (Surface Pro 7/8/9 portrait)) */
+  --breakpoint-screen912: 57rem;
+  /* custom breakpoint:1440px */
+  --breakpoint-screen1440: 90rem;
+
+  /* add to cart button drop shadow */
+  --drop-shadow-3xl: 0 20px 50px rgba(255, 126, 27, 0.25);
+  --drop-shadow-4xl: 0 20px 50px rgba(29, 32, 38, 0.1);
+
+  --animate-slide-in-left: slide-in-left 0.3s ease-out;
+
+  /* Animation for hamburger menu */
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@layer base {
+  button:focus-visible,
+  a:focus-visible {
+    outline: 3px solid var(--color-green-focus);
+    outline-offset: 2px;
+  }
+}
+
+/* Typography */
+.text-preset-1 {
+  @apply font-kumbh-sans font-bold text-44px leading-11 tracking-normal;
+}
+
+.text-preset-2 {
+  @apply font-kumbh-sans font-bold text-28px leading-8 tracking-normal;
+}
+
+.text-preset-3 {
+  @apply font-kumbh-sans font-normal text-base leading-6.5 tracking-normal;
+}
+.text-preset-3-bold {
+  @apply font-kumbh-sans font-bold text-base leading-6.5 tracking-normal;
+}
+
+.text-preset-4 {
+  @apply font-kumbh-sans font-normal text-15px leading-6.5 tracking-normal;
+}
+
+.text-preset-5 {
+  @apply font-kumbh-sans font-bold text-13px leading-4 tracking-[2px];
+}
+
+.text-preset-6 {
+  @apply font-kumbh-sans font-bold text-xs leading-4 tracking-[1.85px];
+}
+
+/* Custom classes */
+.nav-link-desktop {
+  @apply transition border-transparent border-b-4 pb-11 hover:text-grey-950 hover:border-orange-500 focus:border-orange-500  active:border-orange-500;
+}
+
+.nav-link-hamburger {
+  @apply border-b-4 border-transparent transition hover:border-orange-500 focus:border-orange-500;
+}
+
+.add-to-cart {
+  @apply flex justify-center items-center gap-4 pt-4 pb-4 bg-orange-500 drop-shadow-3xl hover:bg-orange-300 rounded-[0.625rem] md:pt-4.5 md:pb-4.5 md:pl-22.5 md:pr-22.5 lg:pt-4 lg:pb-4 lg:pl-16 lg:pr-16 screen1440:pl-19 screen1440:pr-19;
+}
+
+.thumbnail-btn {
+  @apply relative cursor-pointer;
+}
+
+.thumbnail-btn-img {
+  @apply rounded-lg w-23 cursor-pointer screen1440:w-22;
+}
+
+.thumbnail-btn-overlay {
+  @apply absolute inset-0 hover:bg-white/75 hover:rounded-lg;
+}
+
+.thumbnail-active {
+  @apply bg-white/75 border-2 border-orange-500 rounded-lg;
+}
+
+.carousel-btn-prv-next {
+  @apply absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white cursor-pointer;
+}
+
+.carousel-btn-prv-next:disabled {
+  @apply opacity-25 cursor-none;
+}
+
+#product-carousel-desktop.ring-3 {
+  outline: 3px solid var(--color-green-focus);
+  outline-offset: 2px;
+}
