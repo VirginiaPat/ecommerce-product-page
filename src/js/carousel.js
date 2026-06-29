@@ -14,6 +14,14 @@ const initMobileCarousel = () => {
   const slides = Array.from(track.querySelectorAll(".carousel-slide"));
   const totalSlides = slides.length;
 
+  // guard clause
+  if (!track || !prevBtn || !nextBtn) {
+    console.error(
+      "MobileCarousel: one or more required DOM elements not found",
+    );
+    return;
+  }
+
   /**
    * Updates the carousel position and the button states based on the current index
    *  @returns {void}
@@ -66,6 +74,14 @@ const initDesktopCarousel = (openLightbox) => {
   const slideBtns = Array.from(track.querySelectorAll("button"));
   const carouselOuter = document.getElementById("product-carousel-desktop");
 
+  // guard clause
+  if (!track || typeof openLightbox !== "function") {
+    console.error(
+      "DesktopCarousel: one or more required DOM elements not found",
+    );
+    return;
+  }
+
   /**
    * Updates the visible slide based on the current image index
    * @returns {void}
@@ -101,7 +117,7 @@ const initDesktopCarousel = (openLightbox) => {
   };
 
   // Event Listeners--------------------->
-  
+
   thumbnailBtns.forEach((btn, index) => {
     btn.addEventListener("click", () => goToSlide(index));
   });

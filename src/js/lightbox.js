@@ -30,6 +30,12 @@ const initLightbox = () => {
 
   const focusTrap = createFocusTrap(lightbox);
 
+  // guard clause
+  if (!lightbox || !track || !prevBtn || !nextBtn || !closeBtn) {
+    console.error("Lightbox: one or more required DOM elements not found");
+    return;
+  }
+
   /**
    * Updates the visible slide based on the current image index
    * @returns {void}

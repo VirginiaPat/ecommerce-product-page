@@ -24,6 +24,22 @@ const initHamburgerMenu = () => {
   const main = document.querySelector("main");
   const footer = document.querySelector("footer");
 
+  // guard clause
+  if (
+    !openMenuBtn ||
+    !closeMenuBtn ||
+    !hamMenu ||
+    !hamMenuDialog ||
+    !overlay ||
+    !mainMenu ||
+    !header ||
+    !main ||
+    !footer
+  ) {
+    console.error("HamburgerMenu: one or more required DOM elements not found");
+    return;
+  }
+
   /**
    * Opens the hamburger menu
    * @returns {void}

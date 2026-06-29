@@ -24,6 +24,26 @@ const initCart = () => {
   const deleteBtn = document.getElementById("delete-button");
   const checkoutBtn = document.getElementById("checkout-button");
 
+  // guard clause
+  if (
+    !increaseBtn ||
+    !decreaseBtn ||
+    !quantityDisplay ||
+    !addToCartBtn ||
+    !openCartBtn ||
+    !cartDialog ||
+    !cartBadge ||
+    !emptyCartContainer ||
+    !fullCartContainer ||
+    !cartQuantityDisplay ||
+    !totalPriceDisplay ||
+    !deleteBtn ||
+    !checkoutBtn
+  ) {
+    console.error("Cart: one or more required DOM elements not found");
+    return;
+  }
+
   const PRODUCT_PRICE = 125.0;
 
   /**

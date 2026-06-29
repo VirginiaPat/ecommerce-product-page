@@ -10,11 +10,17 @@ const FOCUSABLE_SELECTORS =
 
 /**
  * Creates a focus trap inside a given container element
+ * If containerEl is null or undefined, returns a no-op object with empty activate and deactivate functions to prevent runtime errors.
  * @param {HTMLElement} containerEl - The container element to trap focus within
  * @returns {{ activate:()=>void, deactivate:()=>void }}
  */
 
 const createFocusTrap = (containerEl) => {
+  if (!containerEl) {
+    console.error("FocusTrap: containerEl is required");
+    return { activate: () => {}, deactivate: () => {} };
+  }
+
   /**
    * Returns all focusable elements inside the container.
    * Called on each keydown to account for dynamic DOM changes
@@ -29,7 +35,11 @@ const createFocusTrap = (containerEl) => {
    */
   const handleKeydown = (e) => {
     if (e.key !== "Tab") return;
+
     const focusableEls = getFocusableElements();
+
+    if (focusableEls.length === 0) return;
+
     const firstEl = focusableEls[0];
     const lastEl = focusableEls[focusableEls.length - 1];
 
