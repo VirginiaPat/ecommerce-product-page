@@ -29,7 +29,7 @@ Users should be able to:
 
 ![Mobile](./Screenshot-mobile.png)
 ![Tablet](./Screenshot-tablet.png)
-![Desktop](./Screenshoτ-desktop.png)
+![Desktop](./Screenshot-desktop.png)
 
 ### Links
 
@@ -38,13 +38,33 @@ Users should be able to:
 
 ## My process
 
+I approached this challenge in three phases: HTML structure, CSS styling, and JavaScript interactivity.
+
+I started by building semantic, accessible HTML — using correct heading hierarchy, ARIA attributes (`role="dialog"`, `aria-modal`, `aria-expanded`, `aria-hidden`, `aria-controls`), and landmark elements. I paid special attention to the carousel and lightbox patterns, following WAI-ARIA authoring practices.
+
+For styling I used Tailwind CSS v4 with a mobile-first workflow, defining custom design tokens (colors, typography, breakpoints, filters) in `@theme`. I handled custom breakpoints for specific devices and used CSS filters to tint SVG icons.
+
+For JavaScript I chose an ES Modules architecture with a shared `state.js` object, separating each component into its own module: `hamburger.js`, `carousel.js`, `lightbox.js`, `cart.js`, and a reusable `focusTrap.js` utility. The desktop carousel and lightbox share `state.currentImageIndex` so they stay in sync.
+
 ### Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
 - Tailwind
 - Javascript
-- Mobile-first workflow
+- Mobile-first
+
+## What I learned
+
+- **ES Modules architecture** — organising JavaScript into separate modules with a single entry point made the codebase much easier to maintain and debug. Passing `openLightbox` as a parameter from `index.js` to `initDesktopCarousel` helped me avoid circular dependencies between modules.
+
+- **Focus management and accessibility** — implementing focus traps, the `inert` attribute, and returning focus to the triggering element taught me how keyboard navigation works in practice. I learned that `overflow-hidden` clips not just content but also focus outlines, which required a structural HTML solution.
+
+- **Shared state** — using a single mutable `state` object imported across modules kept the desktop carousel and lightbox in sync without complex event systems.
+
+## Continued development
+
+- **localStorage for cart persistence** — currently the cart resets on page refresh. A natural next step would be to persist cart state to `localStorage` so items survive navigation.
 
 ## Author
 
